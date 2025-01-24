@@ -1,7 +1,7 @@
 body {
   font-family: 'Georgia', serif;
   margin: 0;
-  padding: 0;
+  padding: 5px;
   background: #fdf2f8;
   display: flex;
   justify-content: center;
@@ -35,11 +35,14 @@ body {
   padding: 20px 30px;
   border-radius: 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 90%;
-  max-width: 600px;
+  /* width: 90%; */
+  /* max-width: 600px; */
   margin-top: 20px;
-  height: 400px; /* Set a fixed height for scroll */
-  overflow-y: scroll; /* Make the content scrollable */
+  overflow-y: scroll;
+  /* overflow: hidden; */
+  margin: 20px;
+  max-height: calc(100vh - 100px);
+  min-height: calc(100vh - 100vh);
 }
 
 .header h1 {
