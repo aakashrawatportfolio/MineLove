@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love Letter</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="reveal-container">
+    <button id="reveal-button">💌 Open Your Love Letter 💌</button>
+    <div class="letter-container" id="letter" style="display: none;">
+      <div class="header">
+        <h1>To My Dearest Pahadan (Mote)</h1>
+      </div>
+      <div class="content">
+        <p>Happy one-year anniversary, my sweetheart. It’s incredible to think an entire year has passed since you entered my life and filled it with love and joy. You’ve been my light, my constant source of happiness, and my greatest blessing.</p>
+        <p>From the moment we met, I knew there was something special about you. Your warmth, laughter, and radiant smile captivated me instantly. Over this year, I’ve come to see just how extraordinary you are—kind, compassionate, and so thoughtful. You inspire me every day to be the best version of myself.</p>
+        <p>Our time together has been a beautiful journey filled with unforgettable moments. I still remember the excitement of our first date, the way you made me feel so comfortable with your charm, and every silly joke or deep conversation we’ve shared since. Whether we’re out exploring or enjoying quiet evenings, life feels brighter with you by my side.</p>
+        <p>I adore the little things that make you unique—the way you light up when you’re passionate about something or laugh at my terrible jokes. These moments remind me how lucky I am to love and be loved by you.</p>
+        <p>As we celebrate this milestone, I dream of our future—a life full of love, laughter, and adventures. Thank you for being my partner and for making this year the best of my life.</p>
+        <p>Here’s to our journey ahead. I love you more than words can ever express.</p>
+        <p class="closing">I love you so much, now and always.</p>
+        <p class="signature">Yours forever, <br>Aakash</p>
+      </div>
+      <div class="button-container">
+        <h1>WILL YOU BE MINE FORVER ?</h1>
+        <h5>Spend your entire life with me ?</h5>
+        <p>note:-please press one option</p>
+        <button id="yes-button" onclick="window.location.href='yes.html'">Yes ❤️</button>
+        <button id="no-button" onclick="alert('Sorry, this option is not available. YOU ARE MINE ALWAYS! 💔')">No 💔</button>
+      </div>
+    </div>
+  </div>
+  <div id="hearts-container"></div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const revealButton = document.getElementById('reveal-button');
+      const letter = document.getElementById('letter');
+      const heartsContainer = document.getElementById('hearts-container');
+
+      function createHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.style.left = `${Math.random() * 100}vw`;
+        heart.style.animationDuration = `${2 + Math.random() * 3}s`;
+        heartsContainer.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 5000);
+      }
+
+      revealButton.addEventListener('click', () => {
+        letter.style.display = 'block';
+        revealButton.style.display = 'none';
+        setInterval(createHeart, 200);
+      });
+    });
+  </script>
+</body>
+</html>

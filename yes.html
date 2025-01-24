@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    /* Global body styling */
+    body {
+        margin: 0;
+        background: radial-gradient(circle, #0d1b2a, #1b263b, #415a77); /* Cosmic gradient */
+        font-family: 'Dancing Script', cursive; /* Romantic font */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: auto;
+        overflow: hidden;
+        position: relative;
+    }
+
+    /* Canvas for dynamic stars */
+    .stars {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1; /* Behind the content */
+    }
+
+    /* Container for the letter */
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 90%;
+        max-width: 600px;
+        height: 80vh; /* Limit height for scrolling */
+        overflow-y: auto; /* Enable vertical scrolling */
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.2); /* Semi-transparent container */
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Letter styling */
+    .letter {
+        font-size: 1.8rem; /* Start with a larger font size */
+        line-height: 1.6;
+        font-family: 'Roboto', sans-serif; /* Clean and readable font */
+        color: #ffffff; /* White font to contrast with the background */
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        text-align: left;
+        transition: font-size 0.2s ease-in-out; /* Smooth shrinking effect */
+    }
+
+    /* Responsive styles for tablets and small screens */
+    @media screen and (max-width: 1024px) {
+        .container {
+            width: 95%; /* Expand width for smaller tablets */
+            padding: 18px;
+        }
+
+        .letter {
+            font-size: 1.6rem; /* Slightly reduce font size */
+            line-height: 1.5;
+        }
+    }
+
+    /* For phones (portrait and landscape) */
+    @media screen and (max-width: 768px) {
+        .container {
+            width: 95%; /* Expand width for smaller devices */
+            padding: 15px;
+        }
+
+        .letter {
+            font-size: 1.4rem; /* Slightly reduce font size */
+            line-height: 1.5;
+        }
+    }
+
+    /* For smaller mobile devices */
+    @media screen and (max-width: 480px) {
+        .container {
+            padding: 10px; /* Minimal padding for very small screens */
+        }
+
+        .letter {
+            font-size: 1.2rem; /* Further reduce font size for compact screens */
+            line-height: 1.4;
+        }
+    }
+</style>
+<body>
+    <canvas class="stars"></canvas> <!-- Dynamic stars -->
+    <div class="container">
+        <div class="letter" id="loveLetter"></div>
+    </div>
+
+    <script>
+        const loveLetter = `
+My Dearest Love,
+
+Thank you so much for choosing me to be your partner for life. I feel like the luckiest person in the world today. I know it’s sometimes hard for you to express your feelings, but I want you to know that I am always here, wanting to understand how much you love me.
+
+If you ever want to give me something, please give me your time and your loyalty. That’s what matters most to me. I know we can’t talk every day, but I want you to be truly invested in me, to share everything with me. I may not always know the right words, but I promise to always be here, even if I irritate you sometimes. No matter what, I’ll never stop loving you.
+
+For the smile on your face, I would do anything. I just want you to always be mine. Honestly, you’ve changed me in so many ways. Yes, I may be a bit mischievous, but everything I do, I do it for you, because I love you the most.
+
+One more thing—when it comes to us, it’s not about money or anything else. Please don’t worry about those things. I know you do so much for me, and I do everything I can for you. My only goal is to make you happy.
+
+I want to hold your hand forever and never let go. Now that I have your hand, I promise I won’t ever let it slip from mine. I will be with you always, forever and ever.
+
+I had hoped to see your expressions in person when you read this, to watch how you feel in those little moments, but unfortunately, that hasn't been possible yet.
+
+`;
+
+        const letterElement = document.getElementById("loveLetter");
+        let index = 0;
+        let fontSize = 1.8; // Initial font size in rem
+
+        function typeLetter() {
+            if (index < loveLetter.length) {
+                letterElement.innerHTML += loveLetter[index];
+                index++;
+
+                // Gradually shrink the font size as the content grows
+                if (index > loveLetter.length * 0.3) {
+                    fontSize -= 0.002; // Shrink rate (adjust for smoother transition)
+                    letterElement.style.fontSize = `${Math.max(fontSize, 1)}rem`; // Prevent shrinking below 1rem
+                }
+
+                setTimeout(typeLetter, 50); // Typing speed
+            }
+        }
+
+        typeLetter();
+
+        // Generate Stars
+        const canvas = document.querySelector('.stars');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        function drawStars() {
+            const numStars = 200; // Number of stars
+            for (let i = 0; i < numStars; i++) {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                const size = Math.random() * 2;
+                const brightness = Math.random() * 0.8 + 0.2;
+
+                ctx.beginPath();
+                ctx.arc(x, y, size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${brightness})`;
+                ctx.fill();
+            }
+        }
+
+        drawStars();
+
+        // Twinkling Effect
+        function twinkleStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawStars();
+        }
+
+        setInterval(twinkleStars, 1000); // Stars "twinkle" every second
+
+        // Resize canvas on window resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            drawStars();
+        });
+    </script>
+</body>
+</html>
