@@ -1,183 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Chhaya ❤️</title>
+
 <style>
-    /* Global body styling */
-    body {
-        margin: 0;
-        background: radial-gradient(circle, #0d1b2a, #1b263b, #415a77); /* Cosmic gradient */
-        font-family: 'Dancing Script', cursive; /* Romantic font */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh; /* Ensure full screen height */
-        overflow: hidden;
-        position: relative;
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    font-family:'Poppins',sans-serif;
+    background:
+    radial-gradient(circle at top left,#ffb3d9,transparent 30%),
+    radial-gradient(circle at bottom right,#ffd6a5,transparent 30%),
+    linear-gradient(135deg,#ff4f9a,#ff758c,#fbc2eb);
+}
+
+/* Floating Hearts */
+.hearts{
+    position:absolute;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+.hearts span{
+    position:absolute;
+    bottom:-100px;
+    color:rgba(255,255,255,.7);
+    font-size:25px;
+    animation:float 10s linear infinite;
+}
+
+.hearts span:nth-child(1){left:10%;animation-delay:0s;}
+.hearts span:nth-child(2){left:25%;animation-delay:2s;}
+.hearts span:nth-child(3){left:40%;animation-delay:4s;}
+.hearts span:nth-child(4){left:60%;animation-delay:1s;}
+.hearts span:nth-child(5){left:75%;animation-delay:5s;}
+.hearts span:nth-child(6){left:90%;animation-delay:3s;}
+
+@keyframes float{
+    0%{
+        transform:translateY(0) rotate(0deg);
+        opacity:0;
     }
-
-    /* Canvas for dynamic stars */
-    .stars {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1; /* Behind the content */
+    20%{
+        opacity:1;
     }
-
-    /* Container for the letter */
-    .container {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        width: 90%;
-        max-width: 600px;
-        height: 70vh; /* Limit height for scrolling */
-        overflow-y: auto; /* Enable vertical scrolling */
-        padding: 20px;
-        background: rgba(255, 255, 255, 0.2); /* Semi-transparent container */
-        border-radius: 15px;
-        box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+    100%{
+        transform:translateY(-120vh) rotate(360deg);
+        opacity:0;
     }
+}
 
-    /* Letter styling */
-    .letter {
-        font-size: 1.8rem; /* Start with a larger font size */
-        line-height: 1.6;
-        font-family: 'Roboto', sans-serif; /* Clean and readable font */
-        color: #ffffff; /* White font to contrast with the background */
-        white-space: pre-wrap;
-        word-wrap: break-word;
-        text-align: left;
-        transition: font-size 0.2s ease-in-out; /* Smooth shrinking effect */
+/* Gift Button */
+
+.surprise-btn{
+    position:relative;
+    width:220px;
+    height:220px;
+    border-radius:40px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-decoration:none;
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.4);
+    box-shadow:0 25px 80px rgba(0,0,0,.25);
+    transition:.4s ease;
+    animation:bounce 2.5s infinite;
+}
+
+.surprise-btn:hover{
+    transform:scale(1.08);
+    box-shadow:0 35px 100px rgba(0,0,0,.35);
+}
+
+.gift{
+    font-size:90px;
+    margin-bottom:10px;
+}
+
+.text{
+    color:white;
+    font-size:18px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+.sub{
+    color:white;
+    opacity:.85;
+    font-size:13px;
+    margin-top:5px;
+}
+
+@keyframes bounce{
+    0%,100%{
+        transform:translateY(0);
     }
-
-    /* Responsive styles for tablets and small screens */
-    @media screen and (max-width: 1024px) {
-        .container {
-            width: 95%; /* Expand width for smaller tablets */
-            padding: 18px;
-        }
-
-        .letter {
-            font-size: 1.6rem; /* Slightly reduce font size */
-            line-height: 1.5;
-        }
+    50%{
+        transform:translateY(-15px);
     }
+}
 
-    /* For phones (portrait and landscape) */
-    @media screen and (max-width: 768px) {
-        .container {
-            width: 95%; /* Expand width for smaller devices */
-            padding: 15px;
-        }
+.glow{
+    position:absolute;
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    background:rgba(255,255,255,.25);
+    filter:blur(90px);
+    z-index:-1;
+}
 
-        .letter {
-            font-size: 1.4rem; /* Slightly reduce font size */
-            line-height: 1.5;
-        }
-    }
-
-    /* For smaller mobile devices */
-    @media screen and (max-width: 480px) {
-        .container {
-            padding: 10px; /* Minimal padding for very small screens */
-        }
-
-        .letter {
-            font-size: 1.2rem; /* Further reduce font size for compact screens */
-            line-height: 1.4;
-        }
-    }
 </style>
+</head>
 <body>
-    <canvas class="stars"></canvas> <!-- Dynamic stars -->
-    <div class="container">
-        <div class="letter" id="loveLetter"></div>
-    </div>
 
-    <script>
-        const loveLetter = `
-My Dearest Love,
+<div class="hearts">
+    <span>❤️</span>
+    <span>💕</span>
+    <span>💖</span>
+    <span>💗</span>
+    <span>💘</span>
+    <span>❤️</span>
+</div>
 
-Thank you so much for choosing me to be your partner for life. I feel like the luckiest person in the world today. I know it’s sometimes hard for you to express your feelings, but I want you to know that I am always here, wanting to understand how much you love me.
+<div class="glow"></div>
 
-If you ever want to give me something, please give me your time and your loyalty. That’s what matters most to me. I know we can’t talk every day, but I want you to be truly invested in me, to share everything with me. I may not always know the right words, but I promise to always be here, even if I irritate you sometimes. No matter what, I’ll never stop loving you.
+<!-- Change birthday-chhaya.html to your birthday page filename -->
 
-For the smile on your face, I would do anything. I just want you to always be mine. Honestly, you’ve changed me in so many ways. Yes, I may be a bit mischievous, but everything I do, I do it for you, because I love you the most.
+<a href="bday.html" class="surprise-btn">
+    <div class="gift">🎁</div>
+    <div class="text">Open Me</div>
+    <div class="sub">A Special Surprise Awaits ❤️</div>
+</a>
 
-One more thing—when it comes to us, it’s not about money or anything else. Please don’t worry about those things. I know you do so much for me, and I do everything I can for you. My only goal is to make you happy.
-
-I want to hold your hand forever and never let go. Now that I have your hand, I promise I won’t ever let it slip from mine. I will be with you always, forever and ever.
-
-I had hoped to see your expressions in person when you read this, to watch how you feel in those little moments, but unfortunately, that hasn't been possible yet.
-
-`;
-
-        const letterElement = document.getElementById("loveLetter");
-        let index = 0;
-        let fontSize = 1.8; // Initial font size in rem
-
-        function typeLetter() {
-            if (index < loveLetter.length) {
-                letterElement.innerHTML += loveLetter[index];
-                index++;
-
-                // Gradually shrink the font size as the content grows
-                if (index > loveLetter.length * 0.3) {
-                    fontSize -= 0.002; // Shrink rate (adjust for smoother transition)
-                    letterElement.style.fontSize = `${Math.max(fontSize, 1)}rem`; // Prevent shrinking below 1rem
-                }
-
-                setTimeout(typeLetter, 50); // Typing speed
-            }
-        }
-
-        typeLetter();
-
-        // Generate Stars
-        const canvas = document.querySelector('.stars');
-        const ctx = canvas.getContext('2d');
-
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        function drawStars() {
-            const numStars = 200; // Number of stars
-            for (let i = 0; i < numStars; i++) {
-                const x = Math.random() * canvas.width;
-                const y = Math.random() * canvas.height;
-                const size = Math.random() * 2;
-                const brightness = Math.random() * 0.8 + 0.2;
-
-                ctx.beginPath();
-                ctx.arc(x, y, size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 255, 255, ${brightness})`;
-                ctx.fill();
-            }
-        }
-
-        drawStars();
-
-        // Twinkling Effect
-        function twinkleStars() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            drawStars();
-        }
-
-        setInterval(twinkleStars, 1000); // Stars "twinkle" every second
-
-        // Resize canvas on window resize
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            drawStars();
-        });
-    </script>
 </body>
 </html>
